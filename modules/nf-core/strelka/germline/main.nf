@@ -24,7 +24,6 @@ process STRELKA_GERMLINE {
 
     script:
     def args = task.ext.args ?: ''
-    def args2 = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def regions  = target_bed ? "--callRegions ${target_bed}" : ""
     """
@@ -33,7 +32,6 @@ process STRELKA_GERMLINE {
         --referenceFasta $fasta \\
         $regions \\
         $args \\
-        $args2 \\
         --runDir strelka
 
     python strelka/runWorkflow.py -m local -j $task.cpus
